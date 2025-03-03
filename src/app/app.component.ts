@@ -14,9 +14,8 @@ export class AppComponent {
     router: Router,
     // private webs: WebsocketService
   ) {
-    
-    if (!location.pathname.includes("create")) 
-      router.navigate(["start"])
+    // if (!location.pathname.includes("create")) 
+    //   router.navigate(["start"])
+    router.navigate(["create"])
   }
-
 }

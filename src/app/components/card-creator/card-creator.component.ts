@@ -6,17 +6,20 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-card-creator',
   standalone: true,
-  imports: [MatButtonToggleModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatInputModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatCheckboxModule,
-  CommonModule],
+  imports:
+    [MatButtonToggleModule,
+      MatFormFieldModule,
+      MatSelectModule,
+      MatInputModule,
+      FormsModule,
+      ReactiveFormsModule,
+      MatCheckboxModule,
+      CommonModule,
+      MatButtonModule],
   templateUrl: './card-creator.component.html',
   styleUrl: './card-creator.component.scss'
 })
@@ -28,7 +31,7 @@ export class CardCreatorComponent {
     img: "",
     cost: 1
   }
-  types = ["Сокровище","Класс", "Раса", "Проклятие", "Монстр", "МонстрБаф"]
+  types = ["Сокровище", "Класс", "Раса", "Проклятие", "Монстр", "МонстрБаф"]
   MonsterData: MonsterData = {
     get_lvls: 1,
     strongest: 1,
@@ -48,6 +51,18 @@ export class CardCreatorComponent {
   }
   test() {
     console.log(this.abstractData, this.MonsterData);
+  }
+  getCard() {
+    let tmp = {
+      abstractData: this.abstractData
+    }
+    // прописать особенности
+    const blob = new Blob([JSON.stringify(tmp)], { type: 'text/plain' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'example.txt';
+    link.click();
+    URL.revokeObjectURL(link.href);
   }
 }
 
