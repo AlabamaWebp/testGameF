@@ -53,14 +53,21 @@ export class CardCreatorComponent {
     console.log(this.abstractData, this.MonsterData);
   }
   getCard() {
-    let tmp = {
+    let tmp: any = {
       abstractData: this.abstractData
     }
+    if (["Класс", "Раса"].includes(this.abstractData.cardType)) 
+      tmp["optional"].is_super = this.is_super;
+    else if (this.abstractData.cardType == "Сокровище") {
+      tmp["data"] = this.TreasureData
+      // tmp["strongest"] = str
+    }
+
     // прописать особенности
-    const blob = new Blob([JSON.stringify(tmp)], { type: 'text/plain' });
+    const blob = new File([JSON.stringify(tmp)], this.abstractData.name + ".json", { type: 'text/plain' });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    link.download = 'example.txt';
+    link.download = this.abstractData.name + ".json";
     link.click();
     URL.revokeObjectURL(link.href);
   }
