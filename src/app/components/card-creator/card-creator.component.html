@@ -21,10 +21,6 @@
         <mat-label>Имя файла с картинкой</mat-label>
         <input matInput [(ngModel)]="abstractData.img">
     </mat-form-field> -->
-    <mat-form-field>
-        <mat-label>Стоимость</mat-label>
-        <input matInput [(ngModel)]="abstractData.cost">
-    </mat-form-field>
     @switch (abstractData.cardType) {
         @case ("Монстр") {
             <mat-form-field>
@@ -50,6 +46,10 @@
             </mat-form-field>
         }
         @case ("Сокровище") {
+            <mat-form-field>
+                <mat-label>Стоимость</mat-label>
+                <input matInput [(ngModel)]="abstractData.cost">
+            </mat-form-field>
             <mat-form-field>
                 <mat-label>Тип сокровища</mat-label>
                 <mat-select [(ngModel)]="TreasureData.treasureType">

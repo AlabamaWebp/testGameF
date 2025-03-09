@@ -73,13 +73,13 @@ export class CardCreatorComponent {
     }
 
     // прописать особенности
-    console.log(tmp);
-    // const blob = new File([JSON.stringify(tmp)], this.abstractData.name + ".json", { type: 'text/plain' });
-    // const link = document.createElement('a');
-    // link.href = URL.createObjectURL(blob);
-    // link.download = this.abstractData.name + ".json";
-    // link.click();
-    // URL.revokeObjectURL(link.href);
+    // console.log(tmp);
+    const blob = new File([JSON.stringify(tmp, null, 4)], this.abstractData.name + ".json", { type: 'text/plain' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = this.abstractData.name + ".json";
+    link.click();
+    URL.revokeObjectURL(link.href);
   }
 }
 
