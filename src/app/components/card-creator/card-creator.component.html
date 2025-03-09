@@ -8,7 +8,7 @@
         <mat-label>Описание</mat-label>
         <textarea matInput [(ngModel)]="abstractData.description"></textarea>
     </mat-form-field>
-    <p>МонстрБаф - Баф монстра</p>
+    <p>МонстрБаф - Усиление/ослабление МОНСТРА</p>
     <mat-form-field>
         <mat-label>Тип карты</mat-label>
         <mat-select [value]="abstractData.cardType">
@@ -17,11 +17,14 @@
             }
         </mat-select>
     </mat-form-field>
-    <mat-form-field>
+    <!-- <mat-form-field>
         <mat-label>Имя файла с картинкой</mat-label>
         <input matInput [(ngModel)]="abstractData.img">
+    </mat-form-field> -->
+    <mat-form-field>
+        <mat-label>Стоимость</mat-label>
+        <input matInput [(ngModel)]="abstractData.cost">
     </mat-form-field>
-
     @switch (abstractData.cardType) {
         @case ("Монстр") {
             <mat-form-field>
@@ -30,7 +33,7 @@
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Получаемые сокровщиа с монстра</mat-label>
-                <input matInput [(ngModel)]="MonsterData.strongest">
+                <input matInput [(ngModel)]="MonsterData.gold">
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Сила монстра</mat-label>
@@ -39,6 +42,12 @@
             <p><mat-checkbox [(ngModel)]="MonsterData.undead">
                 Андед
             </mat-checkbox></p>
+        }
+        @case ("МонстрБаф") {
+            <mat-form-field>
+                <mat-label>Получаемые c монстра уровни (1 или -1 например)</mat-label>
+                <input matInput [(ngModel)]="monsterBuff">
+            </mat-form-field>
         }
         @case ("Сокровище") {
             <mat-form-field>
@@ -58,7 +67,7 @@
                 </mat-select>
             </mat-form-field>
             <mat-form-field>
-                <mat-label>Сколько бонус даёт? (Надеваемое)</mat-label>
+                <mat-label>Сила (Мощь)</mat-label>
                 <input matInput [(ngModel)]="strongest">
             </mat-form-field>
             <p><mat-checkbox [(ngModel)]="TreasureData.big">
@@ -76,7 +85,7 @@
             </mat-checkbox>
         }
     }
-    <button mat-flat-button  (click)="test()">Скачать</button>
+    <button mat-flat-button  (click)="getCard()">Скачать</button>
     <!-- <mat-button-toggle-group>
         <mat-button-toggle>Дверь</mat-button-toggle>
         <mat-button-toggle>Сокровище</mat-button-toggle>

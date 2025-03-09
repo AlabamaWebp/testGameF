@@ -29,7 +29,7 @@ export class CardCreatorComponent {
     description: "",
     cardType: "Класс", // Сокровище"  // "Класс" | "Раса" | "Проклятие" | "Монстр" | "МонстрБаф"
     img: "",
-    cost: 1
+    cost: 0
   }
   types = ["Сокровище", "Класс", "Раса", "Проклятие", "Монстр", "МонстрБаф"]
   MonsterData: MonsterData = {
@@ -46,7 +46,8 @@ export class CardCreatorComponent {
   strongest = ""
   tresTypes = ["Надеваемая", "Используемая", "Боевая"];
   templateTypes = ["Шлем", "Броник", "Ноги", "Рука", "2 Руки", "3 Руки", "Рядом",]
-  is_super = false
+  is_super = false;
+  monsterBuff = 0;
   changeType(s: string) {
     this.abstractData.cardType = s as any;
   }
@@ -58,11 +59,17 @@ export class CardCreatorComponent {
       abstractData: this.abstractData
     }
     if (["Класс", "Раса"].includes(this.abstractData.cardType))
-      tmp["optional"].is_super = this.is_super;
+      tmp["is_super"] = this.is_super;
     else if (this.abstractData.cardType == "Сокровище") {
       tmp["data"] = this.TreasureData
       if (this.strongest)
         tmp["strongest"] = this.strongest
+    }
+    else if (this.abstractData.cardType == "Монстр") {
+      tmp["monster"] = this.MonsterData
+    }
+    else if (this.abstractData.cardType == "МонстрБаф") {
+      tmp["monsterBuff"] = this.monsterBuff
     }
 
     // прописать особенности
