@@ -43,6 +43,7 @@ export class CardCreatorComponent {
     template: "Шлем", //  "Шлем" | "Броник" | "Ноги" | "Рука", | "2 Руки" | "3 Руки" | "Рядом",
     big: false
   }
+  strongest = ""
   tresTypes = ["Надеваемая", "Используемая", "Боевая"];
   templateTypes = ["Шлем", "Броник", "Ноги", "Рука", "2 Руки", "3 Руки", "Рядом",]
   is_super = false
@@ -50,26 +51,28 @@ export class CardCreatorComponent {
     this.abstractData.cardType = s as any;
   }
   test() {
-    console.log(this.abstractData, this.MonsterData);
+    // console.log(this.abstractData, this.MonsterData);
   }
   getCard() {
     let tmp: any = {
       abstractData: this.abstractData
     }
-    if (["Класс", "Раса"].includes(this.abstractData.cardType)) 
+    if (["Класс", "Раса"].includes(this.abstractData.cardType))
       tmp["optional"].is_super = this.is_super;
     else if (this.abstractData.cardType == "Сокровище") {
       tmp["data"] = this.TreasureData
-      // tmp["strongest"] = str
+      if (this.strongest)
+        tmp["strongest"] = this.strongest
     }
 
     // прописать особенности
-    const blob = new File([JSON.stringify(tmp)], this.abstractData.name + ".json", { type: 'text/plain' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = this.abstractData.name + ".json";
-    link.click();
-    URL.revokeObjectURL(link.href);
+    console.log(tmp);
+    // const blob = new File([JSON.stringify(tmp)], this.abstractData.name + ".json", { type: 'text/plain' });
+    // const link = document.createElement('a');
+    // link.href = URL.createObjectURL(blob);
+    // link.download = this.abstractData.name + ".json";
+    // link.click();
+    // URL.revokeObjectURL(link.href);
   }
 }
 
