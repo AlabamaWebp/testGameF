@@ -37,6 +37,7 @@ export class CardCreatorComponent {
     strongest: 1,
     gold: 1,
     undead: false,
+    punishment: ""
   }
   TreasureData: TreasureData = {
     treasureType: "Надеваемая", //. "Надеваемая" | "Используемая" | "Боевая"
@@ -102,6 +103,7 @@ export interface MonsterData {
   strongest: number;
   gold: number;
   undead: boolean;
+  punishment: string
 }
 export interface TreasureData {
   treasureType: "Надеваемая" | "Используемая" | "Боевая"
