@@ -16,6 +16,6 @@ export class AppComponent {
   ) {
     // if (!location.pathname.includes("create")) 
     //   router.navigate(["start"])
-    router.navigate(["create"])
+    // router.navigate(["create"])
   }
 }
